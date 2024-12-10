@@ -18,11 +18,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
       - name: Detect folder changes
         id: detect-changes
         run: |
-          if git diff --quiet HEAD~1 HEAD -- 'example-application/business-logic/'; then
+          if git diff --quiet HEAD^1 HEAD -- 'example-application/business-logic/'; then
             echo "changed=false" >> $GITHUB_ENV
             echo "::set-output name=changed::false"
           else
