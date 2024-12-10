@@ -40,7 +40,7 @@ describe('/api', () => {
 
       //Assert
       expect(getResponse).toMatchObject({
-        status: 200,
+        status: 201,
         data: {
           greeting: 'Testing is fun!'
         },

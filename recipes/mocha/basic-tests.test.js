@@ -73,7 +73,7 @@ describe('/api', () => {
 
       //Assert
       expect(getResponse).to.containSubset({
-        status: 200,
+        status: 201,
         data: {
           userId: 1,
           productId: 2,
