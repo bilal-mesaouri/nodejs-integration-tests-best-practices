@@ -72,7 +72,6 @@ jobs:
       with:
         version: '2.14.2' # the full version of `docker-compose` command
 
-    - run: npm ci
     - run: npm test
 
   test_nestjs:
@@ -105,7 +104,6 @@ jobs:
       with:
         version: '2.14.2' # the full version of `docker-compose` command
 
-    - run: npm ci
 
     - run: npm run test:nestjs
 
@@ -125,7 +123,7 @@ jobs:
       with:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
         cache: 'npm'
-        
+
     - name: Restore cache
       uses: actions/cache@v2
       with:
@@ -134,6 +132,5 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    - run: npm ci
 
     - run: npm run test:mocha
