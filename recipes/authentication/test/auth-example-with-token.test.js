@@ -75,7 +75,7 @@ describe("/api", () => {
                 status,
                 data,
             }).toMatchObject({
-                status: 201,
+                status: 200,
                 data: {
                     mode: "approved",
                 },
