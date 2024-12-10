@@ -31,7 +31,16 @@ jobs:
     - uses: KengoTODA/actions-setup-docker-compose@v1
       with:
         version: '2.14.2' # the full version of `docker-compose` command
-        
+    
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - run: npm ci
   test:
     runs-on: ubuntu-latest
@@ -50,6 +59,16 @@ jobs:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
         cache: 'npm'
 
+    - name: Restore cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - run: npm ci
     - run: npm test
 
   test_nestjs:
