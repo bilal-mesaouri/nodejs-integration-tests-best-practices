@@ -12,7 +12,7 @@ axiosRetry(axiosHTTPClient, { retries: 3 });
 module.exports.addOrder = async function (newOrder) {
   // validation
   if (!newOrder.productId) {
-    throw new AppError('invalid-order', `No product-id specified`, 400);
+    throw new AppError('invalid-order', `No product-Id specified`, 400);
   }
 
   // verify user existence by calling external Microservice
